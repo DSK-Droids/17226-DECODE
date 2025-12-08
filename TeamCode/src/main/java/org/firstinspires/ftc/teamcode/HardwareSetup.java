@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.pedropathing.follower.Follower;
-import com.qualcomm.hardware.goblilda.GoBildaPinpointDriver;
+//import com.qualcomm.hardware.goblilda.GoBildaPinpointDriver;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -35,7 +35,7 @@ public class HardwareSetup {
     public Follower follower;
 
     // Pinpoint IMU for odometry
-    public GoBildaPinpointDriver pinpoint;
+   // public GoBildaPinpointDriver pinpoint;
 
     // Control Hub IMU (optional, for additional sensing)
     public IMU imu;
@@ -96,7 +96,7 @@ public class HardwareSetup {
         telemetry.addData("Status", "Hardware Initialized!");
         telemetry.addData("Drive Motors", "Ready");
         telemetry.addData("Pedro Pathing", "Ready");
-        telemetry.addData("Pinpoint IMU", pinpoint != null ? "Ready" : "Not Found");
+        //telemetry.addData("Pinpoint IMU", pinpoint != null ? "Ready" : "Not Found");
         telemetry.update();
     }
 
@@ -107,10 +107,10 @@ public class HardwareSetup {
     private void initDriveMotors() {
         try {
             // Get motors from hardware map (names match Constants.java)
-            frontLeft = hardwareMap.get(DcMotorEx.class, "FL");
-            frontRight = hardwareMap.get(DcMotorEx.class, "FR");
-            backLeft = hardwareMap.get(DcMotorEx.class, "BL");
-            backRight = hardwareMap.get(DcMotorEx.class, "BR");
+            frontLeft = hardwareMap.get(DcMotorEx.class, "fl");
+            frontRight = hardwareMap.get(DcMotorEx.class, "fr");
+            backLeft = hardwareMap.get(DcMotorEx.class, "bl");
+            backRight = hardwareMap.get(DcMotorEx.class, "br");
 
             // Set motor directions (already configured in Constants.java for Pedro)
             // These are for direct control in TeleOp
@@ -162,27 +162,27 @@ public class HardwareSetup {
     private void initPinpointIMU() {
         try {
             // Get Pinpoint IMU from hardware map
-            pinpoint = hardwareMap.get(GoBildaPinpointDriver.class, "pinpoint");
+           // pinpoint = hardwareMap.get(GoBildaPinpointDriver.class, "pinpoint");
 
             // Set odometry pod positions (in mm from robot center)
             // CUSTOMIZE THESE VALUES FOR YOUR ROBOT
-            pinpoint.setOffsets(-84.0, -168.0); // X and Y offsets
+            //pinpoint.setOffsets(-84.0, -168.0); // X and Y offsets
 
             // Set odometry pod orientations
             // CUSTOMIZE THESE VALUES FOR YOUR ROBOT
-            pinpoint.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
-            pinpoint.setEncoderDirections(
-                GoBildaPinpointDriver.EncoderDirection.FORWARD,
-                GoBildaPinpointDriver.EncoderDirection.FORWARD
-            );
+            //pinpoint.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
+            //pinpoint.setEncoderDirections(
+                //GoBildaPinpointDriver.EncoderDirection.FORWARD,
+                //GoBildaPinpointDriver.EncoderDirection.FORWARD
+            //);
 
             // Reset position and recalibrate
-            pinpoint.resetPosAndIMU();
+            //pinpoint.resetPosAndIMU();
 
             telemetry.addData("Pinpoint IMU", "Initialized");
         } catch (Exception e) {
             telemetry.addData("Pinpoint IMU Error", e.getMessage());
-            pinpoint = null; // Set to null if initialization fails
+           // pinpoint = null; // Set to null if initialization fails
         }
     }
 
@@ -256,11 +256,11 @@ public class HardwareSetup {
     /**
      * Update Pinpoint IMU - call this in your loop
      */
-    public void updatePinpoint() {
-        if (pinpoint != null) {
-            pinpoint.update();
-        }
-    }
+    //public void updatePinpoint() {
+        //if (pinpoint != null) {
+        //    pinpoint.update();
+       // }
+    //}
 
     /**
      * Update Pedro Pathing - call this in your autonomous loop
